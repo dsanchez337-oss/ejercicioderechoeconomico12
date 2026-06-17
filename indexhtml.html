@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Derecho Económico — Casos aplicados</title>
+<style>
+  :root{
+    --navy:#1F3864; --blue:#2E75B6; --light:#D5E8F0;
+    --ok-bg:#E1F5EE; --ok-tx:#0F6E56;
+    --no-bg:#FCEBEB; --no-tx:#A32D2D;
+    --bg:#0f1e33; --card:#ffffff; --txt:#1a1a1a; --muted:#5a6472; --border:#d8dee8;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:linear-gradient(160deg,#16263f 0%,#0d1726 100%); color:var(--txt);
+    min-height:100vh; padding:24px 16px; line-height:1.6;
+  }
+  .wrap{max-width:760px; margin:0 auto;}
+  header{text-align:center; color:#fff; margin-bottom:24px;}
+  header h1{font-size:clamp(20px,5vw,28px); margin:0 0 6px; font-weight:700;}
+  header p{font-size:14px; margin:0; opacity:.85;}
+  .intro{
+    color:#fff; background:rgba(255,255,255,.07); border-left:4px solid var(--blue);
+    padding:12px 16px; border-radius:4px; font-size:15px; margin-bottom:20px;
+  }
+  .card{
+    background:var(--card); border-radius:14px; padding:20px; margin-bottom:20px;
+    box-shadow:0 6px 24px rgba(0,0,0,.18);
+  }
+  .tag{
+    display:inline-block; background:var(--navy); color:#fff; font-size:12px;
+    padding:4px 12px; border-radius:8px; font-weight:600; letter-spacing:.3px;
+  }
+  .sub{font-size:13px; color:var(--muted); margin-left:8px;}
+  .q{font-size:17px; margin:12px 0 18px; font-weight:600; color:var(--navy);}
+  .case-label{font-size:15px; font-weight:600; margin:0 0 10px;}
+  .opts{display:flex; flex-wrap:wrap; gap:10px; margin-bottom:20px;}
+  .opt{
+    border:1.5px solid var(--border); background:#fff; color:var(--txt);
+    border-radius:10px; padding:10px 16px; font-size:14px; cursor:pointer;
+    transition:.15s; font-family:inherit; flex:1 1 auto; min-width:140px;
+  }
+  .opt:hover{border-color:var(--blue);}
+  .opt.ok{background:var(--ok-bg); color:var(--ok-tx); border-color:var(--ok-tx); font-weight:600;}
+  .opt.no{background:var(--no-bg); color:var(--no-tx); border-color:var(--no-tx);}
+  .fb{font-size:14px; margin:6px 0 0; padding:12px; border-radius:10px; display:none;}
+  .fb.good{background:var(--ok-bg); color:var(--ok-tx); display:block;}
+  .fb.hint{background:#F1EFE8; color:#444; display:block;}
+  textarea{
+    width:100%; resize:vertical; font-family:inherit; font-size:14px; padding:12px;
+    border:1.5px solid var(--border); border-radius:10px; min-height:80px;
+  }
+  textarea:focus{outline:none; border-color:var(--blue);}
+  .btns{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;}
+  button.action{
+    border:1.5px solid var(--blue); background:var(--blue); color:#fff;
+    border-radius:10px; padding:10px 18px; font-size:14px; cursor:pointer; font-family:inherit;
+  }
+  button.action.ghost{background:#fff; color:var(--blue);}
+  button.action:hover{opacity:.9;}
+  footer{text-align:center; color:#fff; opacity:.6; font-size:12px; margin-top:8px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Casos aplicados y cierre</h1>
+    <p>Derecho Económico · Mercados imperfectos e intervención del Estado</p>
+  </header>
+
+  <div class="intro">
+    La <strong>misma lógica</strong> —corregir fallas de mercado— produce <strong>respuestas jurídicas distintas</strong> según el tipo de falla.
+  </div>
+
+  <div class="card">
+    <div><span class="tag">Pregunta 1</span><span class="sub">Identifica la falla</span></div>
+    <p class="q">¿Qué falla de mercado explica la intervención del Estado en cada caso?</p>
+
+    <p class="case-label">⚡ Servicios públicos (agua, electricidad, vías férreas)</p>
+    <div class="opts" data-group="q1a" data-answer="mn">
+      <button class="opt" data-v="mn">Monopolio natural</button>
+      <button class="opt" data-v="ext">Externalidades positivas</button>
+      <button class="opt" data-v="info">Información asimétrica</button>
+    </div>
+
+    <p class="case-label">🎓 Educación</p>
+    <div class="opts" data-group="q1b" data-answer="ext">
+      <button class="opt" data-v="mn">Monopolio natural</button>
+      <button class="opt" data-v="ext">Externalidades positivas</button>
+      <button class="opt" data-v="info">Información asimétrica</button>
+    </div>
+
+    <p class="fb" id="fb1"></p>
+  </div>
+
+  <div class="card">
+    <div><span class="tag">Pregunta 2</span><span class="sub">Para debatir</span></div>
+    <p class="q">Si ambos casos buscan corregir una falla, ¿por qué la respuesta jurídica es distinta? En un caso el Estado <em>regula</em> a un privado; en el otro <em>provee</em> directamente.</p>
+    <textarea id="resp" placeholder="Escribe tu hipótesis en una o dos frases..."></textarea>
+    <div class="btns">
+      <button class="action ghost" onclick="reveal2()">Ver pista</button>
+    </div>
+    <p class="fb" id="fb2"></p>
+  </div>
+
+  <footer>Síntesis: «El mercado coordina; cuando falla, el Derecho corrige.»</footer>
+</div>
+
+<script>
+document.querySelectorAll('.opt').forEach(function(b){
+  b.addEventListener('click',function(){
+    var grp=b.closest('[data-group]');
+    grp.querySelectorAll('.opt').forEach(function(x){x.classList.remove('ok','no');});
+    var ok=b.dataset.v===grp.dataset.answer;
+    b.classList.add(ok?'ok':'no');
+    grp.dataset.done=ok?'1':'0';
+    checkBoth();
+  });
+});
+function checkBoth(){
+  var a=document.querySelector('[data-group="q1a"]').dataset.done;
+  var c=document.querySelector('[data-group="q1b"]').dataset.done;
+  var fb=document.getElementById('fb1');
+  if(a==='1'&&c==='1'){
+    fb.className='fb good';
+    fb.innerHTML='✓ Correcto. <strong>Servicios públicos = monopolio natural</strong> (la infraestructura hace ineficiente la competencia). <strong>Educación = externalidades positivas</strong> (beneficia a toda la sociedad, no solo a quien la recibe).';
+  }
+}
+function reveal2(){
+  var fb=document.getElementById('fb2');
+  fb.className='fb hint';
+  fb.innerHTML='<strong>Pista:</strong> la respuesta depende de qué falla se corrige. En el <strong>monopolio natural</strong> ya existe un oferente eficiente, así que basta con <em>regularlo</em> (tarifas, calidad). En la <strong>educación</strong> el mercado produciría menos de lo deseable y excluiría a quien no puede pagar, así que el Estado entra a <em>proveer</em> y garantizar el acceso universal.';
+}
+</script>
+</body>
+</html>
